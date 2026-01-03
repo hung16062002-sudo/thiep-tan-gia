@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Thiệp Mời Tân Gia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      background: #f2f2f2;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: #333;
+    }
+    .wrapper {
+      max-width: 760px;
+      margin: 30px auto;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+   .photo {
+  padding: 18px;
+  background: #fff;
+}
+
+.photo img {
+  width: 100%;
+  border-radius: 14px;
+  border: 4px solid #f2f2f2;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    .content {
+      padding: 28px 26px;
+      line-height: 1.7;
+    }
+    h1 {
+      text-align: center;
+      letter-spacing: 2px;
+      margin-top: 0;
+    }
+    .host {
+      text-align: center;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .section {
+      margin: 14px 0;
+    }
+    .label {
+      font-weight: 600;
+    }
+    .buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      flex: 1;
+      padding: 12px;
+      text-align: center;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      color: #fff;
+    }
+    .yes { background: #2e7d32; }
+    .no { background: #c62828; }
+    .map {
+      color: #1a73e8;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .fengshui {
+      margin-top: 22px;
+      padding: 15px;
+      background: #fafafa;
+      border-left: 4px solid #d4af37;
+      font-style: italic;
+    }
+    audio {
+      width: 100%;
+      margin-top: 18px;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 25px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <!-- HÌNH NHÀ -->
+    <div class="photo">
+      <img src="nha.jpg" alt="Nhà mới">
+    </div>
+
+    <div class="content">
+      <h1>THIỆP MỜI TÂN GIA</h1>
+      <div class="host">Gia đình <b>Loan Cao</b> trân trọng kính mời</div>
+
+      <div class="section">
+        <b>Kính mời:</b><br>
+        Quý Anh / Chị / Em cùng Gia Đình
+      </div>
+
+      <div class="section">
+        Đến tham dự buổi <b>Tân Gia</b> và chung vui cùng gia đình.
+      </div>
+
+      <div class="section">
+        ⏰ <span class="label">Thời gian:</span> 10 giờ 00 phút<br>
+        📅 <span class="label">Âm lịch:</span> 22 / 11 / 2025<br>
+        📅 <span class="label">Dương lịch:</span> 10 / 01 / 2026
+      </div>
+
+      <div class="section">
+        📍 <span class="label">Địa chỉ:</span><br>
+        <a class="map" href="https://maps.app.goo.gl/rfzcqLmamUhBHNwh9" target="_blank">
+          Xem trên Google Maps
+        </a>
+      </div>
+
+      <div class="buttons">
+        <a class="btn yes" href="#" onclick="alert('Gia đình xin cảm ơn Quý khách đã xác nhận!')">
+          ✔ Xác nhận tham dự
+        </a>
+        <a class="btn no" href="#" onclick="alert('Gia đình xin ghi nhận và hẹn dịp khác!')">
+          ✖ Xin phép vắng mặt
+        </a>
+      </div>
+
+      <div class="fengshui">
+        🌸 <b>Câu chúc phong thủy – Phát lộc:</b><br>
+        “Tân gia đại cát – An cư lạc nghiệp.<br>
+        Gia đạo hưng long – Tài lộc viên mãn.<br>
+        Phúc khí đầy nhà – Vạn sự hanh thông.”
+      </div>
+
+      <!-- NHẠC TỰ ĐỘNG BẬT -->
+     <audio autoplay loop muted playsinline id="music">
+  <source src="nhac-tan-gia.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const music = document.getElementById("music");
+  document.body.addEventListener("click", () => {
+    music.muted = false;
+    music.play();
+  }, { once: true });
+</script>
+
+      <div class="footer">
+        Sự hiện diện của Quý khách là niềm vinh hạnh cho gia đình.<br>
+        Trân trọng kính mời!
+      </div>
+    </div>
+  </div>
+</body>
+</html>
