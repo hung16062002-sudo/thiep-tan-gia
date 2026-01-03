@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Thiệp Mời Tân Gia</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  background:#f2f2f2;
+  font-family:"Times New Roman", Georgia, serif;
+  color:#333;
+  overflow:hidden;
+}
+
+/* ===== POPUP ===== */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+.envelope{
+  width:260px;height:180px;
+  background:#fff;
+  border-radius:14px;
+  box-shadow:0 15px 40px rgba(0,0,0,.4);
+  position:relative;
+  cursor:pointer;
+}
+.envelope:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border:2px solid #d4af37;
+  border-radius:14px;
+}
+.flap{
+  position:absolute;
+  top:0;left:0;
+  width:100%;height:50%;
+  background:#f5f5f5;
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  transform-origin:top;
+  transition:.6s;
+}
+.envelope.open .flap{transform:rotateX(180deg);}
+.envelope .text{
+  position:absolute;
+  bottom:28px;
+  width:100%;
+  text-align:center;
+  font-weight:bold;
+  letter-spacing:2px;
+}
+.hint{
+  position:absolute;
+  bottom:-45px;
+  width:100%;
+  text-align:center;
+  color:#fff;
+}
+
+/* ===== HIỆU ỨNG NỀN ===== */
+canvas{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+}
+.petal{
+  position:fixed;
+  top:-40px;
+  width:18px;height:18px;
+  background:radial-gradient(circle at 30% 30%, #ffd6e8, #f49ac2);
+  border-radius:60% 40% 60% 40%;
+  animation:fall linear infinite;
+  pointer-events:none;
+  z-index:1;
+}
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg);}
+}
+
+/* ===== THIỆP ===== */
+.card{
+  max-width:760px;
+  margin:30px auto 80px;
+  background:#fff;
+  border-radius:20px;
+  box-shadow:0 18px 40px rgba(0,0,0,.18);
+  text-align:center;
+  position:relative;
+  z-index:10;
+  display:none;
+}
+.photo{padding:18px;}
+.photo img{
+  width:100%;
+  border-radius:16px;
+  border:4px solid #f0f0f0;
+  box-shadow:0 12px 28px rgba(0,0,0,.25);
+}
+.content{
+  padding:30px 30px 50px;
+  line-height:1.9;
+}
+
+h1{letter-spacing:4px;}
+.line{
+  width:90px;height:2px;
+  background:#d4af37;
+  margin:18px auto;
+}
+
+.family{
+  font-size:22px;
+}
+.family span{
+  display:block;
+  font-size:38px;
+  font-weight:bold;
+  color:#d4af37;
+  letter-spacing:3px;
+  text-shadow:0 0 10px rgba(212,175,55,.6);
+}
+
+/* ===== PHONG THỦY ===== */
+.fengshui{
+  margin:22px 0;
+  padding:18px;
+  border-radius:16px;
+  border:2px dashed #d4af37;
+  background:#fffdf5;
+  font-weight:bold;
+  color:#8b6f1e;
+}
+
+/* ===== LỊCH ===== */
+.calendar{
+  width:180px;
+  margin:22px auto;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 12px 28px rgba(0,0,0,.25);
+  font-family:Arial;
+}
+.calendar .top{
+  background:#c62828;
+  color:#fff;
+  padding:10px;
+  font-weight:bold;
+}
+.calendar .day{
+  font-size:58px;
+  font-weight:bold;
+  padding:18px;
+}
+.calendar .bottom{
+  background:#f5f5f5;
+  padding:10px;
+}
+
+/* ===== NÚT ===== */
+.btn{
+  margin-top:18px;
+  padding:12px 26px;
+  border-radius:30px;
+  border:none;
+  background:#c62828;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+  box-shadow:0 6px 16px rgba(0,0,0,.3);
+}
+.music-control{
+  margin-top:20px;
+}
+.music-control input{width:120px;}
+
+a.map{color:#1a73e8;text-decoration:none;}
+
+@media(max-width:600px){
+  body{padding-bottom:80px;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- POPUP -->
+<div class="overlay" id="overlay">
+  <div class="envelope" id="envelope">
+    <div class="flap"></div>
+    <div class="text">THIỆP MỜI</div>
+    <div class="hint">👆 Chạm để mở thiệp</div>
+  </div>
+</div>
+
+<canvas id="fireworks"></canvas>
+
+<!-- THIỆP -->
+<div class="card" id="card">
+  <div class="photo">
+    <img src="nha.jpg">
+  </div>
+
+  <div class="content">
+    <h1>THIỆP MỜI TÂN GIA</h1>
+    <div class="line"></div>
+
+    <div class="family">
+      Gia đình
+      <span>LOAN CAO</span>
+      Trân trọng kính mời Quý khách
+    </div>
+
+    <div style="margin:18px 0;font-style:italic;">
+      Đến chung vui cùng gia đình trong ngày tân gia hỷ sự.
+    </div>
+
+    <div class="fengshui">
+      🌸 Nhà mới khang trang – Gia đạo an khang<br>
+      🌸 Phong thủy hanh thông – Phát tài phát lộc<br>
+      🌸 Gia đình hưng thịnh – Vạn sự cát tường
+    </div>
+
+    <div>⏰ 10 giờ 00 phút</div>
+
+    <div class="calendar">
+      <div class="top">Thứ Bảy</div>
+      <div class="day">10</div>
+      <div class="bottom">Tháng 01 • 2026</div>
+    </div>
+
+    <div>
+      📍 <a class="map" href="https://maps.app.goo.gl/rfzcqLmamUhBHNwh9" target="_blank">
+      Xem Google Maps
+      </a>
+    </div>
+
+    <button class="btn" onclick="confirmAttend()">✅ Xác nhận tham dự</button>
+
+    <audio id="music" loop>
+      <source src="nhac-tan-gia.mp3">
+    </audio>
+
+    <div class="music-control">
+      <button class="btn" onclick="toggleMusic()">🔊 Bật / Tắt nhạc</button><br><br>
+      Âm lượng
+      <input type="range" min="0" max="1" step="0.01" value="0.6"
+             onchange="music.volume=this.value">
+    </div>
+  </div>
+</div>
+
+<script>
+const overlay=document.getElementById("overlay");
+const envelope=document.getElementById("envelope");
+const card=document.getElementById("card");
+const music=document.getElementById("music");
+
+envelope.onclick=()=>{
+  envelope.classList.add("open");
+  setTimeout(()=>{
+    overlay.style.display="none";
+    card.style.display="block";
+    document.body.style.overflow="auto";
+    music.volume=0.6;
+    music.play();
+  },600);
+};
+
+function toggleMusic(){
+  music.paused ? music.play() : music.pause();
+}
+
+function confirmAttend(){
+  alert("Cảm ơn bạn đã xác nhận tham dự! 🎉");
+}
+
+/* HOA ĐÀO */
+setInterval(()=>{
+  const p=document.createElement("div");
+  p.className="petal";
+  p.style.left=Math.random()*innerWidth+"px";
+  p.style.animationDuration=8+Math.random()*5+"s";
+  document.body.appendChild(p);
+  setTimeout(()=>p.remove(),15000);
+},500);
+</script>
+
+</body>
+</html>
