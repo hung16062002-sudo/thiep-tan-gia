@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Thiệp Mời Tân Gia</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  background:#f2f2f2;
+  font-family:"Times New Roman", Georgia, serif;
+  color:#333;
+  overflow-x:hidden;
+}
+
+/* CANVAS PHÁO HOA */
+canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+  pointer-events:none;
+}
+
+/* KHUNG THIỆP */
+.card{
+  max-width:760px;
+  margin:30px auto;
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 15px 35px rgba(0,0,0,0.12);
+  position:relative;
+  z-index:10;
+  text-align:center;
+  overflow:hidden;
+}
+
+/* ẢNH NHÀ */
+.photo{
+  padding:18px;
+}
+.photo img{
+  width:100%;
+  border-radius:14px;
+  border:4px solid #f0f0f0;
+  box-shadow:0 12px 28px rgba(0,0,0,0.18);
+}
+
+/* NỘI DUNG */
+.content{
+  padding:28px;
+  line-height:1.9;
+}
+h1{
+  letter-spacing:4px;
+  margin:10px 0;
+}
+.line{
+  width:90px;
+  height:2px;
+  background:#d4af37;
+  margin:16px auto;
+}
+.host{
+  font-size:18px;
+  margin-bottom:18px;
+}
+.highlight{
+  font-size:22px;
+  font-weight:bold;
+  margin:12px 0;
+}
+.section{
+  margin:14px 0;
+}
+.map{
+  color:#1a73e8;
+  text-decoration:none;
+  font-weight:500;
+}
+.buttons{
+  display:flex;
+  gap:12px;
+  margin-top:22px;
+  flex-wrap:wrap;
+}
+.btn{
+  flex:1;
+  padding:12px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:bold;
+  color:#fff;
+}
+.yes{background:#2e7d32;}
+.no{background:#c62828;}
+
+/* LỊCH NÂNG CAO */
+.calendar{
+  width:180px;
+  margin:20px auto;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+  font-family:Arial, sans-serif;
+}
+.calendar .top{
+  background:#c62828;
+  color:#fff;
+  padding:10px;
+  font-weight:bold;
+  font-size:15px;
+}
+.calendar .day{
+  background:#fff;
+  font-size:58px;
+  font-weight:bold;
+  padding:20px 0;
+}
+.calendar .bottom{
+  background:#f5f5f5;
+  padding:10px;
+  font-size:14px;
+}
+
+/* PHONG THỦY */
+.fengshui{
+  margin-top:26px;
+  padding:18px;
+  background:#fafafa;
+  border-top:1px dashed #d4af37;
+  font-style:italic;
+}
+
+/* HOA ĐÀO */
+.petal{
+  position:fixed;
+  top:-40px;
+  width:18px;
+  height:18px;
+  background:radial-gradient(circle at 30% 30%, #ffd6e8, #f49ac2);
+  border-radius:60% 40% 60% 40%;
+  opacity:0.8;
+  animation:fall linear infinite;
+  pointer-events:none;
+  z-index:1;
+}
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg);}
+}
+
+.footer{
+  margin-top:26px;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="fireworks"></canvas>
+
+<div class="card">
+  <div class="photo">
+    <img src="nha.jpg" alt="Nhà mới">
+  </div>
+
+  <div class="content">
+    <h1>THIỆP MỜI TÂN GIA</h1>
+    <div class="line"></div>
+
+    <div class="host">
+      Gia đình <b>Loan Cao</b><br>
+      Trân trọng kính mời
+    </div>
+
+    <div class="highlight">
+      Quý Anh / Chị / Em & Gia Đình
+    </div>
+
+    <div class="section">
+      Đến tham dự buổi <b>Tân Gia</b><br>
+      và chung vui cùng gia đình
+    </div>
+
+    <div class="line"></div>
+
+    <div class="section">
+      ⏰ <b>Thời gian:</b> 10 giờ 00 phút
+    </div>
+
+    <!-- LỊCH -->
+    <div class="calendar">
+      <div class="top">Thứ Bảy</div>
+      <div class="day">10</div>
+      <div class="bottom">Tháng 01 • 2026</div>
+    </div>
+
+    <div class="section">
+      📅 <b>Âm lịch:</b> 22 / 11 / 2025
+    </div>
+
+    <div class="section">
+      📍 <b>Địa điểm:</b><br>
+      <a class="map" href="https://maps.app.goo.gl/rfzcqLmamUhBHNwh9" target="_blank">
+        Xem trên Google Maps
+      </a>
+    </div>
+
+    <div class="buttons">
+      <a class="btn yes" href="#" onclick="alert('Gia đình xin cảm ơn Quý khách!')">✔ Tham dự</a>
+      <a class="btn no" href="#" onclick="alert('Gia đình xin ghi nhận và hẹn dịp khác!')">✖ Vắng mặt</a>
+    </div>
+
+    <div class="fengshui">
+      “Tân gia đại cát – An cư lạc nghiệp.<br>
+      Gia đạo hưng long – Tài lộc viên mãn.<br>
+      Phúc khí đầy nhà – Vạn sự hanh thông.”
+    </div>
+
+    <audio id="music" autoplay loop muted playsinline controls>
+      <source src="nhac-tan-gia.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="footer">
+      Sự hiện diện của Quý khách là niềm vinh hạnh cho gia đình
+    </div>
+  </div>
+</div>
+
+<!-- BẬT NHẠC -->
+<script>
+const music=document.getElementById("music");
+document.body.addEventListener("click",()=>{
+  music.muted=false;
+  music.play();
+},{once:true});
+</script>
+
+<!-- HOA ĐÀO -->
+<script>
+function createPetal(){
+  const p=document.createElement("div");
+  p.className="petal";
+  p.style.left=Math.random()*window.innerWidth+"px";
+  p.style.animationDuration=8+Math.random()*5+"s";
+  document.body.appendChild(p);
+  setTimeout(()=>p.remove(),15000);
+}
+setInterval(createPetal,500);
+</script>
+
+<!-- PHÁO HOA -->
+<script>
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+window.onresize=()=>{canvas.width=innerWidth;canvas.height=innerHeight;}
+
+class Firework{
+  constructor(){
+    this.x=Math.random()*canvas.width;
+    this.y=canvas.height;
+    this.targetY=Math.random()*canvas.height/2;
+    this.exploded=false;
+    this.particles=[];
+  }
+  update(){
+    if(!this.exploded){
+      this.y-=4;
+      if(this.y<=this.targetY)this.explode();
+    }else this.particles.forEach(p=>p.update());
+  }
+  explode(){
+    this.exploded=true;
+    for(let i=0;i<30;i++)this.particles.push(new Particle(this.x,this.y));
+  }
+  draw(){
+    if(!this.exploded){
+      ctx.fillStyle="#d4af37";
+      ctx.beginPath();
+      ctx.arc(this.x,this.y,2,0,Math.PI*2);
+      ctx.fill();
+    }else this.particles.forEach(p=>p.draw());
+  }
+}
+class Particle{
+  constructor(x,y){
+    this.x=x;this.y=y;
+    this.angle=Math.random()*Math.PI*2;
+    this.speed=Math.random()*3+1;
+    this.life=60;
+  }
+  update(){
+    this.x+=Math.cos(this.angle)*this.speed;
+    this.y+=Math.sin(this.angle)*this.speed;
+    this.life--;
+  }
+  draw(){
+    if(this.life<=0)return;
+    ctx.fillStyle="rgba(212,175,55,0.8)";
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,2,0,Math.PI*2);
+    ctx.fill();
+  }
+}
+let fireworks=[];
+(function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  if(Math.random()<0.03)fireworks.push(new Firework());
+  fireworks.forEach((f,i)=>{
+    f.update();f.draw();
+    if(f.exploded && f.particles.every(p=>p.life<=0))fireworks.splice(i,1);
+  });
+  requestAnimationFrame(animate);
+})();
+</script>
+
+</body>
+</html>
